@@ -444,7 +444,7 @@ resource "aws_vpc_endpoint" "sagemaker_api" {
 data "aws_vpc_endpoint_service" "sagemaker_notebook" {
   count = (var.enable_sagemaker_notebook_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
 
-  service = "aws.sagemaker.${var.sagemaker_notebook_region}.notebook"
+  service_name = "aws.sagemaker.${var.sagemaker_notebook_region}.notebook"
 }
 
 resource "aws_vpc_endpoint" "sagemaker_notebook" {

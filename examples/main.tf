@@ -63,7 +63,7 @@ module "vpc_interface_endpoints" {
   source = "../"
 
   name                     = var.my_vpc_name
-  enable_all_vpc_endpoints = false
+  enable_all_vpc_endpoints = true
   vpc_id                   = module.my_vpc.vpc_id
   security_group_ids       = list(module.vpc_endpoints_sg.security_group_id)
   subnet_ids               = local.vpc_endpoints_subnet_ids

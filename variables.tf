@@ -218,7 +218,7 @@ variable "enable_sagemaker_notebook_vpc_endpoint" {
 variable "sagemaker_notebook_region" {
   description = "the current region"
   type        = string
-  default     = ""
+  default     = "us-west-2"
 }
 
 variable "enable_sagemaker_runtime_vpc_endpoint" {
