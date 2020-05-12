@@ -37,7 +37,7 @@ variable "enable_all_vpc_endpoints" {
   type        = bool
   default     = false
 }
-/*
+
 variable "enable_apigw_vpc_endpoint" {
   description = "create execute-api vpc endpoints"
   type        = bool
@@ -61,7 +61,6 @@ variable "enable_athena_vpc_endpoint" {
   type        = bool
   default     = false
 }
-*/
 
 variable "enable_cloudformation_vpc_endpoint" {
   description = "create cloudformation vpc endpoints"
@@ -99,8 +98,20 @@ variable "enable_config_vpc_endpoint" {
   default     = false
 }
 
+variable "enable_ebs_vpc_endpoint" {
+  description = "create ebs vpc endpoints"
+  type        = bool
+  default     = false
+}
+
 variable "enable_ec2_vpc_endpoint" {
   description = "create ec2 vpc endpoints"
+  type        = bool
+  default     = false
+}
+
+variable "enable_ec2_autoscaling_vpc_endpoint" {
+  description = "create ec2 autoscaling vpc endpoints"
   type        = bool
   default     = false
 }
@@ -195,13 +206,11 @@ variable "enable_monitoring_vpc_endpoint" {
   default     = false
 }
 
-/*
 variable "enable_rekognition_vpc_endpoint" {
   description = "create rekognition vpc endpoints"
   type        = bool
   default     = false
 }
-*/
 
 variable "enable_sagemaker_api_vpc_endpoint" {
   description = "create sagemaker api vpc endpoints"
@@ -269,13 +278,11 @@ variable "enable_sts_vpc_endpoint" {
   default     = false
 }
 
-/*
 variable "enable_storagegateway_vpc_endpoint" {
   description = "create storagegateway vpc endpoints"
   type        = bool
   default     = false
 }
-*/
 
 variable "enable_transfer_vpc_endpoint" {
   description = "create transfer vpc endpoints"
