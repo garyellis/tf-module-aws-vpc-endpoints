@@ -76,7 +76,7 @@ resource "aws_vpc_endpoint" "appmesh_envoy" {
 data "aws_vpc_endpoint_service" "appstream" {
   count = (var.enable_appstream_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
 
-  service = "appstream"
+  service = "appstream.streaming"
 }
 
 data "aws_subnet_ids" "appstream" {
