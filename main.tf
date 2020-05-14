@@ -1440,42 +1440,6 @@ resource "aws_vpc_endpoint" "sts" {
   tags                = merge(map("Name", format("%s-sts", var.name)), var.tags)
 }
 
-#### transfer 
-data "aws_vpc_endpoint_service" "transfer" {
-  count = (var.enable_transfer_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
-
-  service = "transfer"
-}
-
-data "aws_subnet_ids" "transfer" {
-  count = (var.enable_transfer_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
-
-  vpc_id = var.vpc_id
-
-  filter {
-    name   = "availability-zone"
-    values = data.aws_vpc_endpoint_service.transfer[0].availability_zones
-  }
-
-  filter {
-    name   = "subnet-id"
-    values = var.subnet_ids
-  }
-}
-
-resource "aws_vpc_endpoint" "transfer" {
-  count = (var.enable_transfer_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
-
-  vpc_id            = var.vpc_id
-  service_name      = data.aws_vpc_endpoint_service.transfer[0].service_name
-  vpc_endpoint_type = "Interface"
-
-  security_group_ids  = var.security_group_ids
-  subnet_ids          = data.aws_subnet_ids.transfer[0].ids
-  private_dns_enabled = var.private_dns_enabled
-  tags                = merge(map("Name", format("%s-transfer", var.name)), var.tags)
-}
-
 #### transfer server
 data "aws_vpc_endpoint_service" "transferserver" {
   count = (var.enable_transferserver_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0

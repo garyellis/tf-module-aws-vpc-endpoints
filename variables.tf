@@ -284,12 +284,6 @@ variable "enable_storagegateway_vpc_endpoint" {
   default     = false
 }
 
-variable "enable_transfer_vpc_endpoint" {
-  description = "create transfer vpc endpoints"
-  type        = bool
-  default     = false
-}
-
 variable "enable_transferserver_vpc_endpoint" {
   description = "create transferserver vpc endpoints"
   type        = bool
