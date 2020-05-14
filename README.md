@@ -56,7 +56,6 @@ No requirements.
 | enable\_ssmmessages\_vpc\_endpoint | create ssmmessages vpc endpoints | `bool` | `false` | no |
 | enable\_storagegateway\_vpc\_endpoint | create storagegateway vpc endpoints | `bool` | `false` | no |
 | enable\_sts\_vpc\_endpoint | create sts vpc endpoints | `bool` | `false` | no |
-| enable\_transfer\_vpc\_endpoint | create transfer vpc endpoints | `bool` | `false` | no |
 | enable\_transferserver\_vpc\_endpoint | create transferserver vpc endpoints | `bool` | `false` | no |
 | name | An identifying label applied to all resources | `string` | n/a | yes |
 | private\_dns\_enabled | Enable private DNS | `bool` | `true` | no |
