@@ -720,6 +720,42 @@ resource "aws_vpc_endpoint" "elasticloadbalancing" {
   tags                = merge(map("Name", format("%s-elasticloadbalancing", var.name)), var.tags)
 }
 
+#### ses email smtp
+data "aws_vpc_endpoint_service" "email_smtp" {
+  count = (var.enable_email_smtp_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  service = "email-smtp"
+}
+
+data "aws_subnet_ids" "email_smtp" {
+  count = (var.enable_email_smtp_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  vpc_id = var.vpc_id
+
+  filter {
+    name   = "availability-zone"
+    values = data.aws_vpc_endpoint_service.email_smtp[0].availability_zones
+  }
+
+  filter {
+    name   = "subnet-id"
+    values = var.subnet_ids
+  }
+}
+
+resource "aws_vpc_endpoint" "email_smtp" {
+  count = (var.enable_email_smtp_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  vpc_id            = var.vpc_id
+  service_name      = data.aws_vpc_endpoint_service.email_smtp[0].service_name
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids  = var.security_group_ids
+  subnet_ids          = data.aws_subnet_ids.email_smtp[0].ids
+  private_dns_enabled = var.private_dns_enabled
+  tags                = merge(map("Name", format("%s-email-smtp", var.name)), var.tags)
+}
+
 #### cloudwatch events
 data "aws_vpc_endpoint_service" "events" {
   count = (var.enable_events_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
