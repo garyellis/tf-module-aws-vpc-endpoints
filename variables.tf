@@ -158,6 +158,12 @@ variable "enable_elasticloadbalancing_vpc_endpoint" {
   default     = false
 }
 
+variable "enable_email_smtp_vpc_endpoint" {
+  description = "create email smtp vpc endpoints"
+  type        = bool
+  default     = false
+}
+
 variable "enable_events_vpc_endpoint" {
   description = "create cloudwatch events vpc endpoints"
   type        = bool

@@ -36,6 +36,7 @@ No requirements.
 | enable\_ecs\_telemetry\_vpc\_endpoint | create ecs-telemetry vpc endpoints | `bool` | `false` | no |
 | enable\_ecs\_vpc\_endpoint | create ecs vpc endpoints | `bool` | `false` | no |
 | enable\_elasticloadbalancing\_vpc\_endpoint | create elasticloadbalancing vpc endpoints | `bool` | `false` | no |
+| enable\_email\_smtp\_vpc\_endpoint | create email smtp vpc endpoints | `bool` | `false` | no |
 | enable\_events\_vpc\_endpoint | create cloudwatch events vpc endpoints | `bool` | `false` | no |
 | enable\_git\_codecommit\_vpc\_endpoint | create git-codecommit vpc endpoints | `bool` | `false` | no |
 | enable\_glue\_vpc\_endpoint | create glue vpc endpoints | `bool` | `false` | no |
@@ -68,3 +69,5 @@ No requirements.
 ## Outputs
 
 No output.
+
+
