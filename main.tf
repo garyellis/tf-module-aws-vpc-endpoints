@@ -972,6 +972,42 @@ resource "aws_vpc_endpoint" "kms" {
   tags                = merge(map("Name", format("%s-kms", var.name)), var.tags)
 }
 
+#### lambda
+data "aws_vpc_endpoint_service" "lambda" {
+  count = (var.enable_lambda_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  service = "lambda"
+}
+
+data "aws_subnet_ids" "lambda" {
+  count = (var.enable_lambda_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  vpc_id = var.vpc_id
+
+  filter {
+    name   = "availability-zone"
+    values = data.aws_vpc_endpoint_service.lambda[0].availability_zones
+  }
+
+  filter {
+    name   = "subnet-id"
+    values = var.subnet_ids
+  }
+}
+
+resource "aws_vpc_endpoint" "lambda" {
+  count = (var.enable_lambda_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  vpc_id            = var.vpc_id
+  service_name      = data.aws_vpc_endpoint_service.lambda[0].service_name
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids  = var.security_group_ids
+  subnet_ids          = data.aws_subnet_ids.lambda[0].ids
+  private_dns_enabled = var.private_dns_enabled
+  tags                = merge(map("Name", format("%s-lambda", var.name)), var.tags)
+}
+
 #### cloudwatch logs
 data "aws_vpc_endpoint_service" "logs" {
   count = (var.enable_logs_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
@@ -1402,6 +1438,42 @@ resource "aws_vpc_endpoint" "ssmmessages" {
   subnet_ids          = data.aws_subnet_ids.ssmmessages[0].ids
   private_dns_enabled = var.private_dns_enabled
   tags                = merge(map("Name", format("%s-ssmmessages", var.name)), var.tags)
+}
+
+#### states for AWS Step Functions
+data "aws_vpc_endpoint_service" "states" {
+  count = (var.enable_states_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  service = "states"
+}
+
+data "aws_subnet_ids" "states" {
+  count = (var.enable_states_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  vpc_id = var.vpc_id
+
+  filter {
+    name   = "availability-zone"
+    values = data.aws_vpc_endpoint_service.states[0].availability_zones
+  }
+
+  filter {
+    name   = "subnet-id"
+    values = var.subnet_ids
+  }
+}
+
+resource "aws_vpc_endpoint" "states" {
+  count = (var.enable_states_vpc_endpoint || var.enable_all_vpc_endpoints) ? 1 : 0
+
+  vpc_id            = var.vpc_id
+  service_name      = data.aws_vpc_endpoint_service.states[0].service_name
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids  = var.security_group_ids
+  subnet_ids          = data.aws_subnet_ids.states[0].ids
+  private_dns_enabled = var.private_dns_enabled
+  tags                = merge(map("Name", format("%s-states", var.name)), var.tags)
 }
 
 #### storagegateway

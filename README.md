@@ -43,6 +43,7 @@ No requirements.
 | enable\_kinesis\_firehose\_vpc\_endpoint | create kinesis-firehose vpc endpoints | `bool` | `false` | no |
 | enable\_kinesis\_streams\_vpc\_endpoint | create kinesis-streams vpc endpoints | `bool` | `false` | no |
 | enable\_kms\_vpc\_endpoint | create kms vpc endpoints | `bool` | `false` | no |
+| enable\_lambda\_vpc\_endpoint | create lambda vpc endpoints | `bool` | `false` | no |
 | enable\_logs\_vpc\_endpoint | create cloudwatch logs vpc endpoints | `bool` | `false` | no |
 | enable\_monitoring\_vpc\_endpoint | create cloudwatch monitoring vpc endpoints | `bool` | `false` | no |
 | enable\_rekognition\_vpc\_endpoint | create rekognition vpc endpoints | `bool` | `false` | no |
@@ -55,6 +56,7 @@ No requirements.
 | enable\_sqs\_vpc\_endpoint | create sqs vpc endpoints | `bool` | `false` | no |
 | enable\_ssm\_vpc\_endpoint | create ssm vpc endpoints | `bool` | `false` | no |
 | enable\_ssmmessages\_vpc\_endpoint | create ssmmessages vpc endpoints | `bool` | `false` | no |
+| enable\_states\_vpc\_endpoint | create states vpc endpoints for Step Functions | `bool` | `false` | no |
 | enable\_storagegateway\_vpc\_endpoint | create storagegateway vpc endpoints | `bool` | `false` | no |
 | enable\_sts\_vpc\_endpoint | create sts vpc endpoints | `bool` | `false` | no |
 | enable\_transferserver\_vpc\_endpoint | create transferserver vpc endpoints | `bool` | `false` | no |
@@ -69,5 +71,4 @@ No requirements.
 ## Outputs
 
 No output.
-
 
