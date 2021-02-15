@@ -200,6 +200,12 @@ variable "enable_kms_vpc_endpoint" {
   default     = false
 }
 
+variable "enable_lambda_vpc_endpoint" {
+  description = "create lambda vpc endpoints"
+  type        = bool
+  default     = false
+}
+
 variable "enable_logs_vpc_endpoint" {
   description = "create cloudwatch logs vpc endpoints"
   type        = bool
@@ -274,6 +280,12 @@ variable "enable_ssm_vpc_endpoint" {
 
 variable "enable_ssmmessages_vpc_endpoint" {
   description = "create ssmmessages vpc endpoints"
+  type        = bool
+  default     = false
+}
+
+variable "enable_states_vpc_endpoint" {
+  description = "create states vpc endpoints for Step Functions"
   type        = bool
   default     = false
 }
